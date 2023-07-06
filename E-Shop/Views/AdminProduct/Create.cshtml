@@ -1,0 +1,78 @@
+﻿@model ProductList3ViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+ 
+
+<!DOCTYPE html>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-controller="AdminProduct" asp-action="Create" method="post" enctype="multipart/form-data">
+               <div class="mb-3">
+
+                    <label asp-for="Name" class="form-label">Ürün İsmi</label>
+                    <input class="form-control" asp-for="Name"/>
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Açıklama</label>
+                    <input type="text" class="form-control" name="Description" />
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Resim</label>
+                    <input type="file" class="form-control" name="ProductImage" />
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Fiyat</label>
+                    <input type="text" class="form-control" name="Price" />
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Stok</label>
+                    <input type="text" class="form-control" name="Stock" />
+                </div>
+                <div class="form-group">
+
+                    <label>Popular</label>
+                    @Html.EditorFor(x=>x.Popular)
+                    
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Onay</label>
+                    @Html.EditorFor(x=>x.IsApproved)
+
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Kategori Seç</label>
+
+
+                    <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.categorySelect">
+                        <option value="">Kategori Seçin...</option>
+                    </select>
+
+                    @*<label>Kategori</label>
+                    @Html.DropDownListFor(x=>x.Id,(List<SelectListItem>)ViewBag.categorySelect,new {@class="form-control"})*@
+                   
+                </div>
+                <button class="btn btn-primary" type="submit">Ekle</button>
+                
+            </form>
+            <a asp-controller="AdminProduct" asp-action="index" class="btn btn-primary">Ürün Listesi</a>
+        </div>
+    </div>
+</div>

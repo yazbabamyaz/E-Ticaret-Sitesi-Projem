@@ -1,0 +1,32 @@
+﻿@model CriticalViewModel
+@{
+    ViewData["Title"] = "CriticalStock";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Ürün Bilgisi</th>
+        <th>Stok Bilgisi</th>
+    </tr>
+    @foreach (var item in Model.Critical)
+    {
+        if (item.Stock<50)
+        {
+            <tr style="background-color:red">
+                <td>@item.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+        if (item.Stock==50)
+        {
+            <tr style="background-color:yellow">
+                <td>@item.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+        
+    }
+</table>
+

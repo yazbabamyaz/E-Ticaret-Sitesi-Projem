@@ -1,0 +1,30 @@
+﻿@model List<EntityLayer.Entities.Comment>
+@{
+    ViewData["Title"] = "Comment";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Comment</h1>
+<table class="table table-bordered"> 
+    <tr>
+
+        <td>İçerik</td>
+        <td>Ürün Bilgisi</td>
+        <td>Kullanıcı</td>
+        <td>Tarih</td>
+        <td>Sil</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+             <tr>
+
+            <td>@item.Contents</td>
+            <td>@item.Product.Name </td>
+            <td>@item.User.Name @item.User.SurName</td>
+            <td>@item.Date</td>
+            <td>@Html.ActionLink("Sil","Delete",new {item.Id},new {@class="btn btn-danger",onclick="return confirm('Silmek istiyor musun?')"})</td>
+        </tr>
+    }
+</table>
+
+

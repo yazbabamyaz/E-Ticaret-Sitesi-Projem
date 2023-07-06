@@ -1,0 +1,29 @@
+﻿@model EntityLayer.Entities.Category
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form  method="post">
+                <div class="form-group">
+
+                    <label>Ad</label>
+                    <input type="text" class="form-control" name="Name" value="@Model.Name" />
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Açıklama</label>
+                    <input type="text" class="form-control" name="Description" value="@Model.Description" />
+                </div>
+                <br />
+                <button class="btn btn-primary" type="submit" >Güncelle</button>
+            </form>
+
+        </div>
+    </div>
+</div>

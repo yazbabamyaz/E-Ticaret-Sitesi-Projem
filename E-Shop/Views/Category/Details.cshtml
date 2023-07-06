@@ -1,0 +1,55 @@
+﻿@model List<EntityLayer.Entities.Product>
+@using E_Shop.SeoUrl
+@{
+    ViewData["Title"] = "Details";
+    //Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<section id="slider">
+    <!--slider-->
+    @await Component.InvokeAsync("SliderList")
+  
+</section><!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+
+           
+            @*Kategorileri component ile çektik-dynamic Partialview de kullanabilirdim*@
+            @await Component.InvokeAsync("CategoryList")
+
+            @* @await Html.PartialAsync("_CategoryPartialView")*@
+            @* <partial  name="_CategoryPartialView"/>*@
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">ÜRÜNLERİMİZ</h2>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+
+                                        <a href="/Product/Details/@item.Id/@(Seo.AdresDuzenle(item.Name))"><img src="~/Images/@item.Image" width="65" height="110" alt="" /></a>
+                                        <h2>@item.Price</h2>
+                                        <p>@item.Name</p>
+                                        <a href="/Product/Details/@item.Id/@(Seo.AdresDuzenle(item.Name))" class="btn btn-default add-to-cart">Ürün Detay</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                   
+                </div><!--features_items-->
+                @*Popüler ürünleri component ile çektim*@
+                @await Component.InvokeAsync("ProductPopular")
+                
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Update</h1>
+@model ProductUpdateViewModel
+
+
+
+<!DOCTYPE html>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-controller="AdminProduct" asp-action="Update" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+
+                    <label asp-for="Name" class="form-label">Ürün İsmi</label>
+                    <input class="form-control" asp-for="Name" value="@Model.Name" />
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Açıklama</label>
+                    <input asp-for="Description" class="form-control" value="@Model.Description" />
+                </div>
+                <br />
+
+
+                <div class="form-group">
+
+                    <label>Eski Resim</label>
+                    <img src="~/images/@Model.Image" height="60" width="60" />
+
+                    @*<input type="file" class="form-control"  name="ProductImage" value="@Model.ProductImage.FileName"  />*@
+                </div>
+                <div class="form-group">
+
+                    <label>Resim</label>
+                    <input class="form-control form-control-lg" asp-for="ProductImage" type="file">
+
+                    @*<input type="file" class="form-control"  name="ProductImage" value="@Model.ProductImage.FileName"  />*@
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Fiyat</label>
+                    <input asp-for="Price" class="form-control" value="@Model.Price"/>
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Stok</label>
+                    <input asp-for="Stock" class="form-control" value="@Model.Stock"/>
+                </div>
+                <div class="form-group">
+
+                    <label>Popular</label>
+                    @Html.EditorFor(x=>x.Popular)
+
+                </div>
+                <br />
+                <div class="form-group">
+
+
+                    <input class="form-check-input" asp-for="IsApproved">
+                    <label class="form-check-label" asp-for="IsApproved">
+                        Onaylansın mı?
+                    </label>
+
+
+
+                   @* <label>Onay</label>
+                    @Html.EditorFor(x=>x.IsApproved)*@
+
+                </div>
+                <br />
+                <div class="form-group">
+
+                    <label>Kategori Seç</label>
+
+
+                    <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.categorySelect">
+                        <option value="">Kategori Seçin...</option>
+                    </select>
+
+                    @*<label>Kategori</label>
+                    @Html.DropDownListFor(x=>x.Id,(List<SelectListItem>)ViewBag.categorySelect,new {@class="form-control"})*@
+
+                </div>
+                <button class="btn btn-primary" type="submit">Güncelle</button>
+
+            </form>
+            <a asp-controller="
+AdminProduct" asp-action="index" class="btn btn-primary">Ürün Listesi</a>
+        </div>
+    </div>
+</div>
+

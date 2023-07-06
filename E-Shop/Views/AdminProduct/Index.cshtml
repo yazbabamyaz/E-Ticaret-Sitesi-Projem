@@ -1,0 +1,75 @@
+﻿@model  ProductListViewModel
+@*@model List<EntityLayer.Entities.Product>*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+@if(TempData["status"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["status"]
+    </div>
+}
+@if(TempData["status_Remove"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["status_Remove"]
+    </div>
+}
+<a asp-controller="AdminProduct" asp-action="Create" class="btn btn-primary">Ürün Ekle</a>
+<br />
+<table class="table table-bordered"> 
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+        <th>Popüler</th>
+        <th>Onay</th>
+        <th>Resim</th>
+        <th>Kategori</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model.products)
+    {
+        <tr class="text-center">
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+            <td>
+                @if (item.Popular)
+                {
+                    <label class="btn btn-success">Evet</label>
+                }
+                else
+                {
+                    <label class="btn btn-danger">Hayır</label>
+                }
+
+            </td>
+            <td>
+                @if (item.IsApproved)
+                {
+                    <label class="btn btn-success">Evet</label>
+                }
+                else
+                {
+                    <label class="btn btn-danger">Hayır</label>
+                }
+            </td>
+            <td><img src="~/images/@item.Image" width="80" height="80" />                
+                
+            </td>
+            <td>@item.Category.Name</td>
+            <td>@Html.ActionLink("Sil","Delete",new {item.Id}, new {@class="btn btn-danger",onclick="return confirm('Silmek istiyor musun')"})</td>
+            <td><a class="btn btn-primary" asp-controller="AdminProduct" asp-action="Update" asp-route-id="@item.Id" >Güncelle</a></td>
+        </tr>
+        
+    }
+
+</table>
+<product-list-pager current-category="@ViewBag.CurrentCategory" current-page="@ViewBag.CurrentPage" page-count="@ViewBag.PageCount" page-size="@ViewBag.PageSize"></product-list-pager>

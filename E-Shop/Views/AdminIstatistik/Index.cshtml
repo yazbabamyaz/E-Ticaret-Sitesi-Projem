@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>İstatistik</h1>
+
+<div class="list_of_members">
+	<div class="col-md-3" style="background-color:chocolate">
+		<div class="icon">
+			<i class="dollar"></i>
+		</div>
+		<div class="icon-text" style="color:white">
+			<h3>@ViewBag.sales</h3>
+			<p>Satış</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="col-md-3" style="background-color:chartreuse">
+		<div class="icon">
+			<i class="user1"></i>
+		</div>
+		<div class="icon-text" style="color:white">
+			<h3>@ViewBag.user</h3>
+			<p>Kullanıcı</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="col-md-3" style="background-color:darkcyan">
+		<div class="icon">
+			<i class="order"></i>
+		</div>
+		<div class="icon-text" style="color:white">
+			<h3>@ViewBag.product</h3>
+			<p>Ürün</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="col-md-3" style="background-color:darkmagenta">
+		<div class="icon">
+			<i class="visit"></i>
+		</div>
+		<div class="icon-text" style="color:white">
+			<h3>@ViewBag.category</h3>
+			<p>Kategori</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="col-md-3" style="background-color:darkmagenta">
+	<div class="icon">
+			<i class="visit"></i>
+		</div>
+		<div class="icon-text" style="color:white">
+			<h3>@ViewBag.sepet</h3>
+			<p>Sepet ürünleri</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	

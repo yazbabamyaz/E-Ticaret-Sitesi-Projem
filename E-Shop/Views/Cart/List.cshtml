@@ -1,0 +1,62 @@
+﻿@model CartListViewModel
+@{
+    ViewData["Title"] = "List";
+    //Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h1>Sepet Ürünleri</h1>
+@if (TempData["message2"]!=null)
+{
+    <div class="alert alert-info d-none d-lg-block">@TempData["message2"]</div>
+}
+
+
+<table class="table">
+    <tr>
+        <td>Product Name</td>
+        <td>Unit Price</td>
+        <td>Units In Stock</td>
+        <td>Quantity</td>
+        <td>Ürün Resmi</td>
+        <td></td>
+
+    </tr>
+    @foreach (var item in Model.Cart.CartLines)
+    {
+        <tr >
+            <td style="vertical-align:middle">@item.Product.Name</td>
+            <td style ="vertical-align:middle">@item.Product.Price</td>
+            <td style="vertical-align:middle">@item.Product.Stock</td>
+            <td style="vertical-align:middle">@item.Quantity</td>
+            <td style="vertical-align:middle"><img src="~/images/@item.Product.Image" width="80" height="80" /></td>
+            <td style="vertical-align:middle" class="text-right"><a class="btn btn-xs btn-danger" asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.Id"><span class="glyphicon glyphicon-remove"></span>Remove from Cart </a></td>
+
+        </tr>
+    }
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><h3>Total</h3></td>
+        <td class="text-right">
+            <h3><strong>@Model.Cart.Total</strong></h3>
+
+        </td>
+
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a asp-controller="Product" asp-action="index" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-shopping-cart"></span>Continue Shopping</a></td>
+        <td class="text-right">
+            <a asp-controller="Cart" asp-action="Complete" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-shopping-play"></span>Go To Checkout</a>
+
+        </td>
+
+    </tr>
+</table>

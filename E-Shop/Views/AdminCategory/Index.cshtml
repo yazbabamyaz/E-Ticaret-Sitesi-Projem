@@ -1,0 +1,63 @@
+﻿@using EntityLayer.Entities;
+@model CategoryListViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@section Scripts
+{
+
+   @* <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btnSil").click(function () {
+                var id = $(this).attr("data-id");
+                var closestTR = $(this).closest("tr");
+                var confirmDelete = confirm('ID\'si' + id + ' olan kayıdı silmek istediğinizden emin misiniz?');
+                if (confirmDelete) {
+                    $.ajax({
+                        url: '/AdminCategory/Delete/' + id,
+                        type: 'POST',
+                        success: function (result) {
+                            if (result == true) {
+                                closestTR.fadeOut(1000, function () {
+                                    closestTR.remove();
+                                });
+                            }
+                            else alert("Silme işlemi sırasında hata oluştu");
+                        }
+                    });
+                }
+
+            });
+
+        });
+    </script>
+
+}
+
+<a class="btn btn-primary" href="/AdminCategory/Create">Kategori Ekle</a>
+<a class="btn btn-primary" asp-controller="AdminCategory" asp-action="Create">Kategori Ekle</a>
+<br />
+<table class="table table-bordered" id="tblsil">
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model.Categories)
+    {
+        <tr>
+        <td>@item.Name</td>
+        <td>@item.Description</td>            
+           <td><input type="submit" value="Sil" class="btn btn-danger btnSil" data-id=@item.Id></td>
+            <td><a  class="btn btn-primary" href="/AdminCategory/Update/@item.Id">Güncelle</a></td>
+
+        </tr>
+    }
+</table>
+
+<h1>Index</h1>
+

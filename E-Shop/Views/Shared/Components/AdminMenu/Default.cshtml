@@ -1,0 +1,62 @@
+﻿<ul class="sidebar-menu">
+          <li class="active">
+            <a class="" href="#">
+                          <i class="icon_house_alt"></i>
+                          <span>Kategoriler</span>
+                      </a>
+          </li>
+         
+          <li class="sub-menu">
+            <a asp-controller="AdminProduct" asp-action="Index" class="">                          
+                          <span>Ürünler</span>
+                          
+                      </a>
+            
+          </li>
+          <li>
+            <a class="" asp-controller="AdminProduct" asp-action="CriticalStock">
+            <span>Kritik <label style="color:red">@ViewBag.count</label>--<label style="color:yellow">@ViewBag.count2</label>  @*@Html.Partial("StockCount","AdminProduct")*@  @*@await  Html.PartialAsync("/Views/AdminProduct/StockCount.cshtml")*@ </span>
+                      </a>
+          </li>
+          <li>
+            <a asp-controller="AdminSales" asp-action="index">
+                          
+                          <span>Satışlar</span>
+
+                      </a>
+
+          </li>
+
+          <li class="sub-menu">
+            <a asp-controller="Account" asp-action="ListUser" class="">
+                          
+                          <span>Kullanıcılar</span>
+                          
+                      </a>
+            
+          </li>
+
+          <li class="sub-menu">
+        <a asp-controller="AdminIstatistik" asp-action="index" class="">
+                        
+                          <span>İstatistikler</span>
+                          
+                      </a>
+            
+          </li>
+
+          <li class="sub-menu">
+            <a  asp-controller="Admin" asp-action="Comment" class="">
+                        
+                          <span>Yorumlar</span>
+                          
+                      </a>
+            
+          </li>
+
+
+
+    <li class="sub-menu"><a asp-controller="Account" asp-action="LogOut" class=""><i class="fa fa-lock"></i> <span>Çıkış Yap</span></a></li>
+
+
+        </ul>

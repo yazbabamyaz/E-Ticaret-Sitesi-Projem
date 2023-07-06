@@ -1,0 +1,65 @@
+﻿@model CartSummaryViewModel
+
+@*Otantike olduysan Çıkış yap linki gözükür rolün admin ise Admin Paneli linki gözükür.*@
+<ul class="nav navbar-nav">
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="User/Update"><i class="fa fa-user"></i>@TempData["kullanici"]
+                                        
+                                    </a></li>
+
+                                    <li><a asp-controller="Account" asp-action="LogOut"><i class="fa fa-lock"></i> Çıkış Yap</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i> Giriş Yap</a></li>
+                                }
+
+                                @if (User.IsInRole("Admin"))
+                                {
+
+                                    <li><a asp-controller="AdminProduct" asp-action="index"><i class="fa fa-lock"></i> Admin Paneli</a></li>
+                                }
+
+                                <li><a asp-controller="Home2" asp-action="index"> Anasayfa</a></li>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {                                 
+
+
+                                    <li><a asp-controller="Sales" asp-action="index"><i class="fa fa-dollar"></i> Satışlarım</a></li>
+
+
+<li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" asp-controller="Cart" asp-action="List" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Sepetim<span class="badge bg-secondary">@Model.Cart.Sayi </span>
+                                        </a>
+
+
+
+
+
+
+
+
+<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+    @foreach (var item in Model.Cart.CartLines)
+    {
+        <li><a class="dropdown-item" href="#">@item.Product.Name <span class="badge bg-secondary">@item.Quantity</span></a></li>
+    }
+    
+    <li>
+         
+        <a><span class="glyphicon glyphicon-align-left glyphicon-shopping-cart" aria-hidden="true"></span>@Model.Cart.Total</a>
+        @*<a><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>@Model.Cart.Total</a>*@
+    </li>
+
+    <li><a asp-controller="Cart" asp-action="List">Go To Cart Details</a></li>
+                                                    
+                                                </ul>
+</li>
+
+    }
+</ul>

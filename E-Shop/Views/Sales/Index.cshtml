@@ -1,0 +1,32 @@
+﻿@model SalesViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h1>Satın Aldığım Ürünler</h1>
+
+<table class="table">
+    <tr>
+        <td>Product Name</td>
+        <td>Unit Price</td>
+        
+        <td>Quantity</td>
+        <td>Ürün Resmi</td>
+        <td>Date</td>
+
+    </tr>
+    @foreach (var item in Model.Sales)
+    {
+        <tr>
+            <td style="vertical-align:middle">@item.Product.Name</td>
+            <td style="vertical-align:middle">@item.Price</td>
+            
+            <td style="vertical-align:middle">@item.Quantity</td>
+            <td style="vertical-align:middle"><img src="~/images/@item.Image" width="80" height="80" /></td>
+            <td style="vertical-align:middle">@item.Date</td>           
+
+        </tr>
+    }
+
+</table>
