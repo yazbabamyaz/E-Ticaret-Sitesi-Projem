@@ -1,6 +1,7 @@
 # E-Ticaret-Sitesi-Projem
 Siber Güvenlik Akademisi-Engin Demiroğ-Gençay Yıldız gibi hocalarımdan yararlanarak yaptığım proje.
-##Kullandığım Teknoloji Ve Konular
+
+## Kullandığım Teknoloji Ve Konular
 -  AutoMapper 
 -  Extension Method 
 -  Authentication
